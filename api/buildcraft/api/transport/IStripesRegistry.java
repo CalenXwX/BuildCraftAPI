@@ -7,6 +7,9 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 
+import java.util.EnumMap;
+import java.util.List;
+
 public interface IStripesRegistry {
     /** Adds a handler with a {@link EnumHandlerPriority} of {@linkplain EnumHandlerPriority#NORMAL} */
     default void addHandler(IStripesHandlerItem handler) {
@@ -37,4 +40,9 @@ public interface IStripesRegistry {
                         Direction direction,
                         Player player,
                         IStripesActivator activator);
+
+    // Calen 1.18.2
+    public EnumMap<EnumHandlerPriority, List<IStripesHandlerItem>> getItemHandlers();
+
+    public EnumMap<EnumHandlerPriority, List<IStripesHandlerBlock>> getBlockHandlers();
 }

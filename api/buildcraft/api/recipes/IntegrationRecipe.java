@@ -1,17 +1,32 @@
 package buildcraft.api.recipes;
 
+import buildcraft.api.BCModules;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.core.NonNullList;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.level.Level;
 
 import javax.annotation.Nonnull;
 
-public abstract class IntegrationRecipe {
+public abstract class IntegrationRecipe implements Recipe<Container> {
+    public static final ResourceLocation TYPE_ID = new ResourceLocation(BCModules.SILICON.getModId(), "integration");
+
+    public static final RecipeType<IntegrationRecipe> TYPE = RecipeType.simple(TYPE_ID);
+
     public final ResourceLocation name;
 
-    public IntegrationRecipe(ResourceLocation name) {
+    private final long energyCost;
+    private final int maxExpansionCount;
+
+    public IntegrationRecipe(ResourceLocation name, long energyCost, int maxExpansionCount) {
         this.name = name;
+        this.energyCost = energyCost;
+        this.maxExpansionCount = maxExpansionCount;
     }
 
     /**
@@ -22,21 +37,30 @@ public abstract class IntegrationRecipe {
      */
     public abstract ItemStack getOutput(@Nonnull ItemStack target, NonNullList<ItemStack> toIntegrate);
 
+    // Calen 1.18.2
+    public abstract ItemStack getExampleOutput();
+
     /**
      * Determines the components to use when crafting finishes
-     * @param output The generated outputted, determined by getOutput
      * @return The components to use up
      */
-    public abstract ImmutableList<IngredientStack> getRequirements(@Nonnull ItemStack output);
+    // public abstract ImmutableList<IngredientStack> getRequirements(@Nonnull ItemStack output);
+    public abstract ImmutableList<IngredientStack> getRequirements();
 
     /**
      * Determines the amount of MJ required to integrate
-     * @param output The output that would be generated
      * @return The powercost in microjoules
      */
-    public abstract long getRequiredMicroJoules(ItemStack output);
+    // public abstract long getRequiredMicroJoules(ItemStack output);
+    public final long getRequiredMicroJoules() {
+        return energyCost;
+    }
 
     public abstract IngredientStack getCenterStack();
+
+    public int getMaxExpansionCount() {
+        return maxExpansionCount;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -55,5 +79,37 @@ public abstract class IntegrationRecipe {
     @Override
     public int hashCode() {
         return name.hashCode();
+    }
+
+    // Recipe
+
+    @Override
+    public boolean matches(Container inv, Level world) {
+        return false;
+    }
+
+    @Override
+    public ItemStack assemble(Container inv, RegistryAccess registryAccess) {
+        return ItemStack.EMPTY;
+    }
+
+    @Override
+    public boolean canCraftInDimensions(int width, int height) {
+        return true;
+    }
+
+    @Override
+    public ItemStack getResultItem(RegistryAccess registryAccess) {
+        return ItemStack.EMPTY;
+    }
+
+    @Override
+    public boolean isSpecial() {
+        return true;
+    }
+
+    @Override
+    public RecipeType<IntegrationRecipe> getType() {
+        return TYPE;
     }
 }

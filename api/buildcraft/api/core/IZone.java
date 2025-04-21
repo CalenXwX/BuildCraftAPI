@@ -5,6 +5,7 @@
 package buildcraft.api.core;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.phys.Vec3;
 
 import java.util.Random;
@@ -23,5 +24,6 @@ public interface IZone {
     boolean contains(Vec3 point);
 
     /** Gets a random position that {@link #contains(Vec3)} will return true. */
-    BlockPos getRandomBlockPos(Random rand);
+    // BlockPos getRandomBlockPos(Random rand);
+    BlockPos getRandomBlockPos(RandomSource rand);
 }

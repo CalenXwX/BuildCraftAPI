@@ -3,6 +3,7 @@ package buildcraft.api.recipes;
 import net.minecraft.core.NonNullList;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -17,10 +18,12 @@ public interface IIntegrationRecipeProvider {
      * @param toIntegrate A list of stacks to try to integrate to the
      * @return */
     @Nullable
-    IntegrationRecipe getRecipeFor(@Nonnull ItemStack target, @Nonnull NonNullList<ItemStack> toIntegrate);
+    // IntegrationRecipe getRecipeFor(@Nonnull ItemStack target, @Nonnull NonNullList<ItemStack> toIntegrate);
+    IntegrationRecipe getRecipeFor(@Nonnull ItemStack target, @Nonnull NonNullList<ItemStack> toIntegrate, Level world);
 
     /**
      * Returns recipe by it's name
      */
-    IntegrationRecipe getRecipe(@Nonnull ResourceLocation name);
+    // IntegrationRecipe getRecipe(@Nonnull ResourceLocation name);
+    IntegrationRecipe getRecipe(@Nonnull ResourceLocation name, Level world);
 }
