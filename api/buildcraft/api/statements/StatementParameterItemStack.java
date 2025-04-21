@@ -76,9 +76,7 @@ public class StatementParameterItemStack implements IStatementParameter {
     }
 
     @Override
-    public StatementParameterItemStack onClick(
-            IStatementContainer source, IStatement stmt, ItemStack stack, StatementMouseClick mouse
-    ) {
+    public StatementParameterItemStack onClick(IStatementContainer source, IStatement stmt, @Nonnull ItemStack stack, StatementMouseClick mouse) {
         if (stack.isEmpty()) {
             return EMPTY;
         } else {

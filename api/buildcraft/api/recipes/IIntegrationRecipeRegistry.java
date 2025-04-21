@@ -1,5 +1,7 @@
 package buildcraft.api.recipes;
 
+import net.minecraft.world.level.Level;
+
 import java.util.Iterator;
 
 public interface IIntegrationRecipeRegistry extends IIntegrationRecipeProvider {
@@ -9,6 +11,7 @@ public interface IIntegrationRecipeRegistry extends IIntegrationRecipeProvider {
      * Gets all of the simple recipes that are registered. Note that you *can* use the returned iterator's
      * {@link Iterator#remove()} method to remove recipes from this registry.
      */
-    Iterable<IntegrationRecipe> getAllRecipes();
+    // Iterable<IntegrationRecipe> getAllRecipes();
+    Iterable<IntegrationRecipe> getAllRecipes(Level world);
 
 }

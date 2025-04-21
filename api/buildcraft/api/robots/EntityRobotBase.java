@@ -5,7 +5,6 @@
 package buildcraft.api.robots;
 
 import buildcraft.api.boards.RedstoneBoardRobot;
-import buildcraft.api.core.IFluidHandlerAdv;
 import buildcraft.api.core.IZone;
 import buildcraft.api.mj.MjAPI;
 import buildcraft.api.mj.MjBattery;
@@ -16,20 +15,21 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraftforge.items.IItemHandler;
 
-public abstract class EntityRobotBase extends LivingEntity implements IItemHandler, IFluidHandlerAdv {
+import javax.annotation.Nonnull;
+
+public abstract class EntityRobotBase extends LivingEntity {
 
     public static final long MAX_POWER = 5000 * MjAPI.MJ;
     public static final long SAFETY_POWER = MAX_POWER / 5;
     public static final long SHUTDOWN_POWER = 0;
     public static final long NULL_ROBOT_ID = Long.MAX_VALUE;
 
-    public EntityRobotBase(EntityType<? extends LivingEntity> entityType, Level par1World) {
-        super(entityType, par1World);
+    public EntityRobotBase(EntityType<? extends LivingEntity> entityType, Level world) {
+        super(entityType, world);
     }
 
-    public abstract void setItemInUse(ItemStack stack);
+    public abstract void setItemInUse(@Nonnull ItemStack stack);
 
     public abstract void setItemActive(boolean b);
 

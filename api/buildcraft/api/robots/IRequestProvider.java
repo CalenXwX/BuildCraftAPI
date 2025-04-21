@@ -6,6 +6,8 @@ package buildcraft.api.robots;
 
 import net.minecraft.world.item.ItemStack;
 
+import javax.annotation.Nonnull;
+
 /** Provide requests of items that need to be fulfilled.
  *
  * Requests are organized as an linear array, where null entries mark slots without a requests. A request in a slot, or
@@ -21,6 +23,7 @@ public interface IRequestProvider {
      *
      * @param slot
      * @return the request in the slot, or null if there's no request. */
+    @Nonnull
     ItemStack getRequest(int slot);
 
     /** Fulfill the request in slot with the stack given and return any excess.
@@ -28,5 +31,6 @@ public interface IRequestProvider {
      * @param slot
      * @param stack
      * @return any excess that was not used to fulfill the request. */
+    @Nonnull
     ItemStack offerItem(int slot, ItemStack stack);
 }

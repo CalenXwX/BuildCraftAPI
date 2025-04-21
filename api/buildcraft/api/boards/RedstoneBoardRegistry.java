@@ -5,8 +5,12 @@
 package buildcraft.api.boards;
 
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
+import net.minecraftforge.registries.RegistryObject;
 
-import java.util.Collection;
+import java.util.List;
+import java.util.Map;
 
 public abstract class RedstoneBoardRegistry {
 
@@ -24,9 +28,13 @@ public abstract class RedstoneBoardRegistry {
 
     public abstract RedstoneBoardNBT<?> getRedstoneBoard(CompoundTag nbt);
 
-    public abstract RedstoneBoardNBT<?> getRedstoneBoard(String id);
+    // public abstract RedstoneBoardNBT<?> getRedstoneBoard(String id);
+    public abstract RedstoneBoardNBT<?> getRedstoneBoard(ResourceLocation id);
 
-    public abstract Collection<RedstoneBoardNBT<?>> getAllBoardNBTs();
+    // public abstract Collection<RedstoneBoardNBT<?>> getAllBoardNBTs();
+    public abstract List<RedstoneBoardNBT<?>> getAllBoardNBTs();
+
+    public abstract Map<RedstoneBoardNBT<?>, RegistryObject<? extends Item>> getBoardNBTItemMap();
 
     public abstract long getPowerCost(RedstoneBoardNBT<?> board);
 }

@@ -8,6 +8,8 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
 
+import javax.annotation.Nonnull;
+
 public interface ICropHandler {
 
     /** Check if an item is a seed.
@@ -46,8 +48,10 @@ public interface ICropHandler {
      *
      * @param world
      * @param pos
+     * @param tool
      * @param drops a list to return the harvest's drops.
      * @return true if the block was successfully harvested. */
-    boolean harvestCrop(Level world, BlockPos pos, NonNullList<ItemStack> drops);
+    // boolean harvestCrop(Level world, BlockPos pos, NonNullList<ItemStack> drops);
+    CropManager.HarvestResult harvestCrop(Level world, BlockPos pos, @Nonnull ItemStack tool, NonNullList<ItemStack> drops);
 
 }

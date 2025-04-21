@@ -18,5 +18,8 @@ public abstract class RedstoneBoardRobotNBT extends RedstoneBoardNBT<EntityRobot
     public abstract RedstoneBoardRobot create(EntityRobotBase robot);
 
     public abstract ResourceLocation getRobotTexture();
+    // Calen 1.18.2
+    public abstract ResourceLocation getRobotTextureFullLocation();
 
+    public abstract ResourceLocation getRobotId();
 }
