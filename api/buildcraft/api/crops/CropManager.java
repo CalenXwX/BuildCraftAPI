@@ -12,6 +12,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public final class CropManager {
+    public enum HarvestResult {
+        SUCCESS,
+        FAIL,
+        PROGRESS;
+    }
+
     private static List<ICropHandler> handlers = new ArrayList<>();
     private static ICropHandler defaultHandler;
 
@@ -73,13 +79,15 @@ public final class CropManager {
         return defaultHandler.isMature(blockAccess, state, pos);
     }
 
-    public static boolean harvestCrop(World world, BlockPos pos, NonNullList<ItemStack> drops) {
+    // public static boolean harvestCrop(World world, BlockPos pos, NonNullList<ItemStack> drops)
+    public static HarvestResult harvestCrop(World world, BlockPos pos, ItemStack tool, NonNullList<ItemStack> drops) {
         BlockState state = world.getBlockState(pos);
         for (ICropHandler cropHandler : handlers) {
             if (cropHandler.isMature(world, state, pos)) {
-                return cropHandler.harvestCrop(world, pos, drops);
+                return cropHandler.harvestCrop(world, pos, tool, drops);
             }
         }
-        return defaultHandler.isMature(world, state, pos) && defaultHandler.harvestCrop(world, pos, drops);
+        // return defaultHandler.isMature(world, state, pos) && defaultHandler.harvestCrop(world, pos, drops);
+        return defaultHandler.isMature(world, state, pos) ? defaultHandler.harvestCrop(world, pos, tool, drops) : HarvestResult.FAIL;
     }
 }

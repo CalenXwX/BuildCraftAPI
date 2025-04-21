@@ -10,6 +10,8 @@ import net.minecraftforge.common.util.INBTSerializable;
 /** Provides a basic implementation of a simple battery. Note that you should call {@link #tick(World, BlockPos)} or
  * {@link #tick(World, Vector3d)} every tick to allow for losing excess power. */
 public class MjBattery implements INBTSerializable<CompoundNBT> {
+    public static final String NBT_STORED = "stored";
+
     private final long capacity;
     private long microJoules = 0;
 
@@ -20,13 +22,13 @@ public class MjBattery implements INBTSerializable<CompoundNBT> {
     @Override
     public CompoundNBT serializeNBT() {
         CompoundNBT nbt = new CompoundNBT();
-        nbt.putLong("stored", microJoules);
+        nbt.putLong(NBT_STORED, microJoules);
         return nbt;
     }
 
     @Override
     public void deserializeNBT(CompoundNBT nbt) {
-        microJoules = nbt.getLong("stored");
+        microJoules = nbt.getLong(NBT_STORED);
     }
 
     public void writeToBuffer(ByteBuf buffer) {

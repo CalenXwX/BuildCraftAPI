@@ -6,6 +6,8 @@ package buildcraft.api.core;
 
 import net.minecraft.item.ItemStack;
 
+import javax.annotation.Nonnull;
+
 public interface IInvSlot {
     /** Returns the slot number of the underlying Inventory.
      *
@@ -18,9 +20,11 @@ public interface IInvSlot {
 
     boolean isItemValidForSlot(ItemStack stack);
 
+    @Nonnull
     ItemStack decreaseStackInSlot(int amount);
 
+    @Nonnull
     ItemStack getStackInSlot();
 
-    void setStackInSlot(ItemStack stack);
+    void setStackInSlot(@Nonnull ItemStack stack);
 }

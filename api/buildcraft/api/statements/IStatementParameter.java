@@ -27,8 +27,10 @@ public interface IStatementParameter extends IGuiSlot {
      * possible values to be shown, or null if you did nothing and wish to show all possible values.
      *
      * @see #getPossible(IStatementContainer) */
-    IStatementParameter onClick(IStatementContainer source, IStatement stmt, ItemStack stack,
-                                StatementMouseClick mouse);
+    IStatementParameter onClick(IStatementContainer source, IStatement stmt, @Nonnull ItemStack stack, StatementMouseClick mouse);
+
+    // Calen 1.18.2
+    default IStatementParameter onScroll(IStatementContainer source, IStatement stmt, @Nonnull ItemStack stack, double delta) {return this;}
 
     void writeToNbt(CompoundNBT nbt);
 

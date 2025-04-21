@@ -4,9 +4,13 @@
  * should be located as "LICENSE.API" in the BuildCraft source code distribution. */
 package buildcraft.api.boards;
 
+import net.minecraft.item.Item;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.RegistryObject;
 
-import java.util.Collection;
+import java.util.List;
+import java.util.Map;
 
 public abstract class RedstoneBoardRegistry {
 
@@ -24,9 +28,13 @@ public abstract class RedstoneBoardRegistry {
 
     public abstract RedstoneBoardNBT<?> getRedstoneBoard(CompoundNBT nbt);
 
-    public abstract RedstoneBoardNBT<?> getRedstoneBoard(String id);
+    // public abstract RedstoneBoardNBT<?> getRedstoneBoard(String id);
+    public abstract RedstoneBoardNBT<?> getRedstoneBoard(ResourceLocation id);
 
-    public abstract Collection<RedstoneBoardNBT<?>> getAllBoardNBTs();
+    // public abstract Collection<RedstoneBoardNBT<?>> getAllBoardNBTs();
+    public abstract List<RedstoneBoardNBT<?>> getAllBoardNBTs();
+
+    public abstract Map<RedstoneBoardNBT<?>, RegistryObject<? extends Item>> getBoardNBTItemMap();
 
     public abstract long getPowerCost(RedstoneBoardNBT<?> board);
 }

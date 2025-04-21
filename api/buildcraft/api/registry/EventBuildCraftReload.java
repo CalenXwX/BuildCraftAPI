@@ -5,11 +5,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fml.event.lifecycle.IModBusEvent;
 
 import javax.annotation.Nullable;
 import java.util.Set;
 
-public abstract class EventBuildCraftReload extends Event {
+// public abstract class EventBuildCraftReload extends Event
+public abstract class EventBuildCraftReload extends Event implements IModBusEvent {
 
     /** The manager that is being reloaded. */
     public final IReloadableRegistryManager manager;
@@ -26,7 +28,7 @@ public abstract class EventBuildCraftReload extends Event {
      * sure how useful this actually is. */
     public static class BeforeClear extends EventBuildCraftReload {
         public BeforeClear(IReloadableRegistryManager manager,
-                           @Nullable Set<IReloadableRegistry<?>> reloadingRegistries) {
+                @Nullable Set<IReloadableRegistry<?>> reloadingRegistries) {
             super(manager, reloadingRegistries);
         }
     }
@@ -47,7 +49,7 @@ public abstract class EventBuildCraftReload extends Event {
         public final GsonBuilder gsonBuilder;
 
         public PopulateGson(IReloadableRegistryManager manager,
-                            @Nullable Set<IReloadableRegistry<?>> reloadingRegistries, GsonBuilder gsonBuilder) {
+                @Nullable Set<IReloadableRegistry<?>> reloadingRegistries, GsonBuilder gsonBuilder) {
             super(manager, reloadingRegistries);
             this.gsonBuilder = gsonBuilder;
         }
@@ -65,7 +67,7 @@ public abstract class EventBuildCraftReload extends Event {
      * the next reload. */
     public static class FinishLoad extends EventBuildCraftReload {
         public FinishLoad(IReloadableRegistryManager manager,
-                          @Nullable Set<IReloadableRegistry<?>> reloadingRegistries) {
+                @Nullable Set<IReloadableRegistry<?>> reloadingRegistries) {
             super(manager, reloadingRegistries);
         }
     }
