@@ -9,6 +9,7 @@ public enum EnumEngineType implements IStringSerializable, IEngineType {
     IRON("energy", "iron"),
     // CREATIVE("energy", "creative"),
     CREATIVE("core", "creative"),
+    RF("energy", "rf"),
     ;
 
     public final String unlocalizedTag;
