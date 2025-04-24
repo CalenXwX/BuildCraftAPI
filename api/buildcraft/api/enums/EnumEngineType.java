@@ -1,32 +1,34 @@
 package buildcraft.api.enums;
 
 import buildcraft.api.core.IEngineType;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.StringRepresentable;
 
 public enum EnumEngineType implements StringRepresentable, IEngineType {
     WOOD("core", "wood"),
-    STONE("energy", "stone"),
-    IRON("energy", "iron"),
-    // CREATIVE("energy", "creative"),
+    STONE("core", "stone"),
+    IRON("core", "iron"),
     CREATIVE("core", "creative"),
-    RF("energy", "rf"),
+    RF("core", "rf"),
     ;
 
     public final String unlocalizedTag;
-    @Deprecated(forRemoval = true)
-    public final String resourceLocation;
+    // public final String resourceLocation;
+    public final ResourceLocation resourceLocation;
 
     public static final EnumEngineType[] VALUES = values();
 
     EnumEngineType(String mod, String loc) {
         unlocalizedTag = loc;
-        resourceLocation = "buildcraft" + mod + ":blocks/engine/inv/" + loc;
+        // resourceLocation = "buildcraft" + mod + ":blocks/engine/inv/" + loc;
+        resourceLocation = new ResourceLocation("buildcraft" + mod, "engine_" + loc);
     }
 
-//    @Override
-//    public String getItemModelLocation() {
-//        return resourceLocation;
-//    }
+    @Override
+    // public String getItemModelLocation()
+    public ResourceLocation getItemModelLocation() {
+        return resourceLocation;
+    }
 
     @Override
     public String getSerializedName() {
