@@ -1,6 +1,8 @@
 package buildcraft.api.core;
 
+import net.minecraft.util.ResourceLocation;
+
 public interface IEngineType {
-    @Deprecated()
-    String getItemModelLocation();
+    // String getItemModelLocation();
+    ResourceLocation getItemModelLocation();
 }
