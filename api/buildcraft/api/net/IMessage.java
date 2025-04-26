@@ -8,9 +8,9 @@ public interface IMessage {
 
     void toBytes(FriendlyByteBuf buf);
 
-    public static IMessage staticFromBytes(Class<? extends IMessage> clazz, FriendlyByteBuf buf) {
+    public static <MSG extends IMessage> MSG staticFromBytes(Class<MSG> clazz, FriendlyByteBuf buf) {
         try {
-            IMessage message = clazz.newInstance();
+            MSG message = clazz.newInstance();
             message.fromBytes(buf);
             return message;
         } catch (Exception e) {
