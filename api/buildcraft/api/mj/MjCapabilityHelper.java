@@ -96,7 +96,9 @@ public class MjCapabilityHelper implements ICapabilityProvider {
                     // (We need to actual accepted MJ to be some integer multiple of mjPerRf)
                     long excessMj = acceptedMj % mjPerRf;
                     // An MJ value that is an integer multiple of mjPerRf
-                    long exactAcceptableMj = maxReceiveMj - excessMj;
+                    // Calen FIX: acceptedMj, not maxReceiveMj
+                    // long exactAcceptableMj = maxReceiveMj - excessMj;
+                    long exactAcceptableMj = acceptedMj - excessMj;
 
                     if (exactAcceptableMj <= 0) {
                         return 0;
@@ -178,7 +180,7 @@ public class MjCapabilityHelper implements ICapabilityProvider {
             return provider == null ? LazyOptional.empty() : LazyOptional.of(() -> provider).cast();
         }
         if (capability == CapabilityEnergy.ENERGY) {
-            return provider == null ? LazyOptional.empty() : LazyOptional.of(() -> rfAutoConvert).cast();
+            return rfAutoConvert == null ? LazyOptional.empty() : LazyOptional.of(() -> rfAutoConvert).cast();
         }
         return LazyOptional.empty();
     }
