@@ -4,16 +4,13 @@ import buildcraft.api.enums.*;
 import com.google.common.collect.Maps;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.DyeColor;
-import net.minecraft.world.level.block.state.properties.BooleanProperty;
-import net.minecraft.world.level.block.state.properties.EnumProperty;
-import net.minecraft.world.level.block.state.properties.IntegerProperty;
-import net.minecraft.world.level.block.state.properties.Property;
+import net.minecraft.world.level.block.state.properties.*;
 
 import java.util.Map;
 
 public final class BuildCraftProperties {
-    public static final Property<Direction> BLOCK_FACING = EnumProperty.create("facing", Direction.class, new Direction[] { Direction.NORTH, Direction.EAST, Direction.SOUTH, Direction.WEST });
-    public static final Property<Direction> BLOCK_FACING_6 = EnumProperty.create("facing", Direction.class);
+    public static final Property<Direction> BLOCK_FACING = DirectionProperty.create("facing", new Direction[] { Direction.NORTH, Direction.EAST, Direction.SOUTH, Direction.WEST });
+    public static final Property<Direction> BLOCK_FACING_6 = DirectionProperty.create("facing");
 
     public static final Property<DyeColor> BLOCK_COLOR = EnumProperty.create("color", DyeColor.class);
     // public static final EnumProperty<EnumSpring> SPRING_TYPE = EnumProperty.create("type", EnumSpring.class);
