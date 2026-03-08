@@ -1,6 +1,7 @@
 package buildcraft.api.transport.pipe;
 
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.level.material.MaterialColor;
 
 public final class PipeFlowType {
     public final IFlowCreator creator;
@@ -9,6 +10,8 @@ public final class PipeFlowType {
     /** The default colour type, if none is given in {@link PipeDefinition}. if this is also null then the final
      * fallback type is {@link EnumPipeColourType#TRANSLUCENT}. */
     public EnumPipeColourType fallbackColourType;
+    /** The default map colour. If the pipe is coloured, the map colour will be the pipe colour. */
+    private MaterialColor defaultMapColour = MaterialColor.METAL;
 
     public PipeFlowType(IFlowCreator creator, IFlowLoader loader) {
         this(creator, loader, null);
@@ -18,6 +21,15 @@ public final class PipeFlowType {
         this.creator = creator;
         this.loader = loader;
         this.fallbackColourType = colourType;
+    }
+
+    public PipeFlowType setDefaultMapColour(MaterialColor newColour) {
+        this.defaultMapColour = newColour;
+        return this;
+    }
+
+    public MaterialColor getDefaultMapColour() {
+        return this.defaultMapColour;
     }
 
     @FunctionalInterface
