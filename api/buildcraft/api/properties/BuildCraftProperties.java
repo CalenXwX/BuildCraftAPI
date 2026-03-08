@@ -24,7 +24,7 @@ public final class BuildCraftProperties {
     public static final Property<Integer> GENERIC_PIPE_DATA = IntegerProperty.create("pipe_data", 0, 15);
     public static final Property<Integer> LED_POWER = IntegerProperty.create("led_power", 0, 3);
 
-    public static final Property<Boolean> JOINED_BELOW = BooleanProperty.create("joined_below"); // 这里的注册名就是model文件里的条件
+    public static final Property<Boolean> JOINED_BELOW = BooleanProperty.create("joined_below");
     public static final Property<Boolean> MOVING = BooleanProperty.create("moving");
     public static final Property<Boolean> LED_DONE = BooleanProperty.create("led_done");
     //    public static final Property<Boolean> ACTIVE = BooleanProperty.create("active"); // set but never used
